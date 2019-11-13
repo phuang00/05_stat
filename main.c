@@ -13,7 +13,7 @@ int main() {
     printf("%s\n", strerror(errno));
   }
   printf("File: %s\n", file);
-  printf("File size: %lldB\n", info.st_size);
+  printf("File size: %ldB\n", info.st_size);
   int others = info.st_mode % 8;
   int group = (info.st_mode / 8) % 8;
   int user = (info.st_mode / 64) % 8;
@@ -24,11 +24,11 @@ int main() {
 
   printf("\n");
   char buffer[50];
-  int n = sprintf(buffer, "%lldB, %lfKB, %lfMB, %lfGB", info.st_size, (info.st_size / 1000.0), (info.st_size / 1000000.0), (info.st_size / 1000000000.0));
+  int n = sprintf(buffer, "%ldB, %lfKB, %lfMB, %lfGB", info.st_size, (info.st_size / 1000.0), (info.st_size / 1000000.0), (info.st_size / 1000000000.0));
   printf("File size in B, KB, MB, GB: %s\n", buffer);
   printf("\n");
   char permissions[8][4] = {"---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"};
-  printf("%s%s%s\t%u\t%u\t%lld\t%s\t%s\n", permissions[user], permissions[group], permissions[others], info.st_uid, info.st_gid, info.st_size, time, file);
+  printf("%s%s%s\t%u\t%u\t%ld\t%s\t%s\n", permissions[user], permissions[group], permissions[others], info.st_uid, info.st_gid, info.st_size, time, file);
 
   return 0;
 }
